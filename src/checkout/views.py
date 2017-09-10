@@ -11,13 +11,17 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @login_required
 def checkout(request):
     publishKey = settings.STRIPE_PUBLISHABLE_KEY
+    customer_id = request.user.userstripe.stripe_id
     if request.method == 'POST':
         token = request.POST('stripeToken')
+        
+        customer = stripe.Customer.retrieve({customer_id})
+        customer.sources.create(source={token})
         charge = stripe.Charge.create(
                 amount=1000,
                 currency="usd",
                 description="Example charge",
-                source=token,
+                customer = customer
         )
     context = {'publishKey': publishKey}
     template = 'checkout.html'

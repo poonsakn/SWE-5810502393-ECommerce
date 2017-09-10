@@ -45,4 +45,5 @@ def profileCallback(send, request, user, **kwargs):
         userProfile.save()
 
 user_logged_in.connect(stripeCallback)
+user_signed_up.connect(stripeCallback)
 user_signed_up.connect(profileCallback)
