@@ -48,10 +48,8 @@
     {% include 'navbar.html' %}
 
     <div class="container theme-showcase" role="main">
-        {% block jumbotron %} {% endblock %} 
-        {% block content %} {% endblock %}
-        {% block style %} {% endblock %}
-        
+        {% block jumbotron %} {% endblock %} {% block content %} {% endblock %} {% block style %} {% endblock %}
+
         <!-- Main jumbotron for a primary marketing message or call to action -->
 
 
@@ -64,6 +62,8 @@
         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
@@ -72,6 +72,13 @@
         <script src="{% static 'javascript/docs.min.js' %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        {% block script %} {% endblock %}
+        <script>
+            $(document).ready(function () {
+                {% block jquery %}
+                {% endblock %}
+            });
+        </script>
 </body>
 
 </html>
