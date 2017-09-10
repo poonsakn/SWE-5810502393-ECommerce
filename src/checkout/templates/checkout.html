@@ -2,7 +2,7 @@
 
 {% block script %}
 <script type="text/javascript">
-    Stripe.setPublishableKey('pk_test_1Vlah9CZ6Yt3aOllk4F3JywM');
+    Stripe.setPublishableKey('{{ publishKey }}');
     function stripeResponseHandler(status,response){
         var $form = $('#payment-form');
         if (response.error) {
